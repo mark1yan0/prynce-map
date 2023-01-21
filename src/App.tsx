@@ -1,6 +1,4 @@
-import { LatLngExpression } from 'leaflet';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
-import { IMapItem } from './lib/interfaces';
 import { mockItems } from './lib/mock';
 import config from './lib/config/index';
 import MapCarousel from './components/Map/MapCarousel';
@@ -13,6 +11,9 @@ function App() {
         center={config.center}
         zoom={config.zoom}
         scrollWheelZoom={config.scrollWheelZoom}
+        markerZoomAnimation
+        zoomAnimation
+        fadeAnimation
       >
         <TileLayer attribution={config.attribution} url={config.mapUrl} />
         {mockItems.map(item => (
