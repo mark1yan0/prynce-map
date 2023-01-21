@@ -7,12 +7,15 @@ import { useState } from 'react';
 import { LatLng } from 'leaflet';
 import CurrentLocationButton from './components/Map/CurrentLocation/Button';
 import LocationMarker from './components/Map/CurrentLocation/Marker';
+import useWindowWidth, { IBreakpoints } from './hooks/useWindowWidth';
 
 function App() {
   const [myPosition, setMyPosition] = useState<LatLng | null>(null);
+  const breakpoints = useWindowWidth();
+
   return (
     <MapContainer
-      center={config.center}
+      center={getResponsiveCenter(breakpoints)}
       zoom={config.zoom}
       scrollWheelZoom={config.scrollWheelZoom}
       markerZoomAnimation
@@ -31,3 +34,10 @@ function App() {
 }
 
 export default App;
+
+const getResponsiveCenter = (breakpoints: IBreakpoints) => {
+  if (breakpoints.isMobile) return config.center.mobile;
+  if (breakpoints.isTablet) return config.center.tablet;
+
+  return config.center.desktop;
+};

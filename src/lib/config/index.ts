@@ -1,7 +1,11 @@
 import { LatLngExpression } from 'leaflet';
 
 export default {
-  center: [43.30237, 13.012834] as LatLngExpression,
+  center: {
+    desktop: [44.30237, 11.012834] as LatLngExpression,
+    tablet: [44.30237, 11.012834] as LatLngExpression,
+    mobile: [44.30237, 10.012834] as LatLngExpression,
+  },
   zoom: 5.5,
   flyToZoom: 12,
   scrollWheelZoom: false,
