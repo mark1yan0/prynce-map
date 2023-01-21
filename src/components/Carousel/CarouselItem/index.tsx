@@ -4,7 +4,7 @@ const CarouselItem: React.FC<{
 }> = ({ children, currentIndex }) => {
   return (
     <div
-      className='transition-transform'
+      className='transition-transform w-60'
       style={{
         transform: `translate(calc(-${
           currentIndex * 100
