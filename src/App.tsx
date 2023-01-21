@@ -4,15 +4,7 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 const position: LatLngExpression = [45, 10];
 function App() {
   return (
-    <div
-      style={{
-        width: '100vw',
-        maxWidth: '1300px',
-        height: '100vh',
-        display: 'grid',
-        placeItems: 'center',
-      }}
-    >
+    <div className='w-screen max-w-[1300px] h-screen grid place-items-center'>
       <MapContainer center={position} zoom={6} scrollWheelZoom={false}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
