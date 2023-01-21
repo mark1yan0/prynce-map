@@ -12,7 +12,7 @@ const Article: React.FC<IArticleProps> = ({ item }) => {
 
   return (
     <article
-      className='h-full w-full p-2 bg-white rounded-md border border-stone-400 text-left cursor-pointer transition-all'
+      className='h-full w-full p-2 bg-white rounded-md border border-stone-400 text-left cursor-pointer transition-all hover:bg-gray-100'
       style={{ backgroundColor: isSelected() ? 'black' : undefined }}
       onClick={() => zoomOnMarker(item)}
     >
