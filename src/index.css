@@ -21,6 +21,9 @@
 
 #prynce-map {
   max-width: 1280px;
+  width: 1000px;
+  height: 90vh;
+  max-height: 90vh;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -29,8 +32,19 @@
 .leaflet-container {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .leaflet-bottom:has(.leaflet-control-attribution) {
   top: 0;
+}
+
+.loading-animation {
+  animation: spinner 1s ease infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
 }

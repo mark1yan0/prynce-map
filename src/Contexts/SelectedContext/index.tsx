@@ -6,7 +6,7 @@ import { IMapItem } from '../../lib/interfaces';
 
 interface Context {
   selected: null | IMapItem;
-  setSelected: (item: IMapItem) => void;
+  setSelected: (item: IMapItem | null) => void;
   zoomOnMarker: (item: IMapItem) => void;
 }
 
