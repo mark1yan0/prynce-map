@@ -7,11 +7,12 @@ import config from './lib/config/index';
 function App() {
   return (
     <div className='relative w-[1000px] max-w-[1300px] h-screen grid place-items-center'>
-      <MapContainer center={config.center} zoom={5.5} scrollWheelZoom={false}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-        />
+      <MapContainer
+        center={config.center}
+        zoom={config.zoom}
+        scrollWheelZoom={config.scrollWheelZoom}
+      >
+        <TileLayer attribution={config.attribution} url={config.mapUrl} />
         {mockItems.map(item => (
           <Marker position={getMarkerPos(item)} key={item.name}>
             <Popup>
