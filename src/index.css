@@ -16,11 +16,9 @@
 
 #prynce-map {
   max-width: 1280px;
-  width: minmax(500px, 1000px);
   height: 90vh;
   max-height: 90vh;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -28,10 +26,20 @@
   width: 100%;
   height: 100%;
   position: relative;
+  z-index: 4;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  color: black !important;
 }
 
 .leaflet-bottom:has(.leaflet-control-attribution) {
   top: 0;
+}
+
+.leaflet-control-attribution a {
+  color: black;
 }
 
 .loading-animation {
