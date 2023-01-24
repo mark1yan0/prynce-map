@@ -7,3 +7,14 @@ export interface IMapItem {
   link: string;
   slug: string;
 }
+
+export interface IReducerState {
+  data: IMapItem[] | [];
+  isLoading: boolean;
+  hasErrors: boolean;
+}
+
+export interface IReducer {
+  type: 'FETCH_INIT' | 'FETCH_SUCCESS' | 'FETCH_FAILED';
+  payload?: IMapItem[];
+}

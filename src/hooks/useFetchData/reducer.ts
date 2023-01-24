@@ -1,15 +1,4 @@
-import { IMapItem } from '../../lib/interfaces';
-
-interface IReducerState {
-  data: IMapItem[] | [];
-  isLoading: boolean;
-  hasErrors: boolean;
-}
-
-interface IReducer {
-  type: 'FETCH_INIT' | 'FETCH_SUCCESS' | 'FETCH_FAILED';
-  payload?: IMapItem[];
-}
+import { IReducer, IReducerState } from '../../lib/interfaces';
 
 export const FETCH_INIT = 'FETCH_INIT';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';

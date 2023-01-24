@@ -1,13 +1,21 @@
 import { useState } from 'react';
 import useWindowWidth from '../../hooks/useWindowWidth';
 import { IMapItem } from '../../lib/interfaces';
+import SkeletonLoader from '../Loaders/Skeleton';
 import CarouselButton from './Button';
 import CarouselItem from './CarouselItem';
 
-const Carousel: React.FC<{
+interface ICarouselProps {
   items: IMapItem[];
   renderItems: (item: IMapItem) => React.ReactElement;
-}> = ({ items, renderItems }) => {
+  loading: boolean;
+}
+
+const Carousel: React.FC<ICarouselProps> = ({
+  items,
+  renderItems,
+  loading,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { isMobile, isTablet } = useWindowWidth();
 
@@ -35,17 +43,33 @@ const Carousel: React.FC<{
     setCurrentIndex(prev => prev - getCarouselOffset());
   };
 
+  const loadingNum = isMobile ? 1 : isTablet ? 2 : 3;
+
   return (
     <div className='relative'>
       <div
         className='grid overflow-hidden min-w-full gap-2 relative'
-        style={{ gridTemplateColumns: `repeat(${items.length}, 1fr)` }}
+        style={{
+          gridTemplateColumns: `repeat(${
+            loading ? loadingNum : items.length
+          }, 1fr)`,
+        }}
       >
-        {items.map(item => (
-          <CarouselItem currentIndex={currentIndex} key={item.slug}>
-            {renderItems(item)}
-          </CarouselItem>
-        ))}
+        {loading &&
+          Array(loadingNum)
+            .fill(true)
+            .map((_, index) => (
+              <CarouselItem currentIndex={currentIndex} key={index}>
+                <SkeletonLoader />
+              </CarouselItem>
+            ))}
+
+        {!loading &&
+          items.map(item => (
+            <CarouselItem currentIndex={currentIndex} key={item.slug}>
+              {renderItems(item)}
+            </CarouselItem>
+          ))}
       </div>
       <CarouselButton onClick={handlePrev} type='prev' />
       <CarouselButton onClick={handleNext} type='next' />
