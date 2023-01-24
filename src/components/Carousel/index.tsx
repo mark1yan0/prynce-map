@@ -42,7 +42,7 @@ const Carousel: React.FC<{
         style={{ gridTemplateColumns: `repeat(${items.length}, 1fr)` }}
       >
         {items.map(item => (
-          <CarouselItem currentIndex={currentIndex} key={item.name}>
+          <CarouselItem currentIndex={currentIndex} key={item.slug}>
             {renderItems(item)}
           </CarouselItem>
         ))}

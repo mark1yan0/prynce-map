@@ -5,4 +5,5 @@ export interface IMapItem {
   lat: number;
   lon: number;
   link: string;
+  slug: string;
 }

@@ -8,10 +8,16 @@ import { LatLng } from 'leaflet';
 import CurrentLocationButton from './components/Map/CurrentLocation/Button';
 import LocationMarker from './components/Map/CurrentLocation/Marker';
 import useWindowWidth, { IBreakpoints } from './hooks/useWindowWidth';
+import useFetchData from './hooks/useFetchData';
 
 function App() {
   const [myPosition, setMyPosition] = useState<LatLng | null>(null);
   const breakpoints = useWindowWidth();
+
+  const { data, isLoading, hasErrors } = useFetchData();
+
+  if (isLoading) return <p>loading</p>;
+  if (hasErrors) return <p>error</p>;
 
   return (
     <MapContainer
@@ -25,9 +31,9 @@ function App() {
       <TileLayer attribution={config.attribution} url={config.mapUrl} />
       <SelectedContextProvider>
         <CurrentLocationButton setMyPosition={setMyPosition} />
-        <MarkersList />
+        <MarkersList data={data} />
         <LocationMarker myPosition={myPosition} />
-        <MapCarousel />
+        <MapCarousel data={data} />
       </SelectedContextProvider>
     </MapContainer>
   );

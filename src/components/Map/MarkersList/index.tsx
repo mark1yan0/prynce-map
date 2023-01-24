@@ -1,17 +1,17 @@
 import { Marker } from 'react-leaflet';
 import useSelectedContext from '../../../Contexts/SelectedContext';
 import { getMarkerPos } from '../../../lib/helpers';
-import { mockItems } from '../../../lib/mock';
+import { IMapItem } from '../../../lib/interfaces';
 
-const MarkersList = () => {
+const MarkersList = ({ data }: { data: IMapItem[] }) => {
   const { zoomOnMarker } = useSelectedContext();
 
   return (
     <>
-      {mockItems.map(item => (
+      {data.map(item => (
         <Marker
           position={getMarkerPos(item)}
-          key={item.name}
+          key={item.slug}
           eventHandlers={{
             click: () => zoomOnMarker(item),
           }}
