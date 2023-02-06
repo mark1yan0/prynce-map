@@ -1,4 +1,9 @@
 import { LatLngExpression } from 'leaflet';
+import { isDev } from '../helpers';
+
+const noLocalHostOrigin = isDev()
+  ? 'https://www.staging19.prynce.it'
+  : window.location.origin;
 
 export default {
   center: {
@@ -12,4 +17,8 @@ export default {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   mapUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  sources: {
+    baseUrl: `${noLocalHostOrigin}/wp-json/wp`,
+    dataPath: '/v2/prynce-map-entry',
+  },
 };

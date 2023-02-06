@@ -1,4 +1,7 @@
-const url = 'https://www.staging19.prynce.it/wp-json/wp/v2/prynce-map-entry';
+import config from '../lib/config';
+
+// when complexity scales, should be handled with axios
+const url = `${config.sources.baseUrl}${config.sources.dataPath}`;
 
 export const getPosts = async ({
   onError,
@@ -9,7 +12,6 @@ export const getPosts = async ({
     const res = await fetch(url);
     const data = await res.json();
 
-    console.log(data);
     return data;
   } catch (err) {
     if (err instanceof Error) {
