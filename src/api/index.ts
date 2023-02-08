@@ -1,7 +1,7 @@
 import config from '../lib/config';
 
 // when complexity scales, should be handled with axios
-const url = `${config.sources.baseUrl}${config.sources.dataPath}`;
+const url = `${config.sources.baseUrl}${config.sources.dataPath}?per_page=100`;
 
 export const getPosts = async ({
   onError,

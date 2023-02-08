@@ -30,7 +30,6 @@ const useFetchData = () => {
         link: item.acf.link,
         slug: item.slug,
       }));
-      console.log(mappedData);
       dispatch({ type: FETCH_SUCCESS, payload: mappedData });
     })();
   }, []);
