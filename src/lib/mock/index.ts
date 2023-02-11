@@ -29,7 +29,7 @@ export const mockItems: IMapItem[] = [
     link: 'https://www.google.com/maps/place/Gioielleria+Paulon+-+Luxury+Store/@45.8841227,8.5407552,18z/data=!3m1!4b1!4m5!3m4!1s0x4786758c178dd121:0x9ecc8a4316bfd39e!8m2!3d45.8841064!4d8.5407481',
   },
   {
-    name: 'Charme Arrpwriqpsedamenti',
+    name: 'La Bottega dell&#8217;Orafo"',
     region: "Valle d'Aosta",
     address: 'Via Chanoux, 123 - 11026 Saint Vincent (AO)',
     lat: 45.7510001,

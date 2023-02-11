@@ -1,6 +1,7 @@
 import { useEffect, useReducer } from 'react';
 import { getPosts } from '../../api';
 import { IMapItem } from '../../lib/interfaces';
+import { mockItems } from '../../lib/mock';
 import reducer, { FETCH_FAILED, FETCH_INIT, FETCH_SUCCESS } from './reducer';
 
 const initialValues = {
@@ -21,6 +22,10 @@ const useFetchData = () => {
         },
       });
 
+      if (!data) {
+        return;
+      }
+
       const mappedData: IMapItem[] = data.map((item: any) => ({
         name: item.title.rendered,
         region: item.acf.region,
@@ -30,6 +35,7 @@ const useFetchData = () => {
         link: item.acf.link,
         slug: item.slug,
       }));
+
       dispatch({ type: FETCH_SUCCESS, payload: mappedData });
     })();
   }, []);

@@ -20,12 +20,11 @@ const Article: React.FC<IArticleProps> = ({ item }) => {
       onClick={() => zoomOnMarker(item)}
     >
       <h3
-        className={`text-lg leading-5 font-semibold transition-all mb-0 ${
+        className={`text-sm md:text-lg leading-5 font-semibold transition-all mb-0 ${
           isSelected() ? 'text-white' : 'text-black'
         }`}
-      >
-        {item.name}
-      </h3>
+        dangerouslySetInnerHTML={{ __html: item.name }}
+      ></h3>
       <p
         className={`transition-all ${
           isSelected() ? 'text-white' : 'text-black'
