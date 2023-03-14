@@ -2,7 +2,7 @@ import { LatLngExpression } from 'leaflet';
 import { isDev } from '../helpers';
 
 const noLocalHostOrigin = isDev()
-  ? 'https://www.staging19.prynce.it'
+  ? 'https://www.prynce.it'
   : window.location.origin;
 
 export default {
