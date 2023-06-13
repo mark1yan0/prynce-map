@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import useSidebar from '../../Contexts/SidebarContext';
 import { twMerge } from 'tailwind-merge';
 import config from '../../lib/config';
@@ -9,9 +9,23 @@ import SkeletonLoader from '../Loaders/Skeleton';
 import useSelectedContext from '../../Contexts/SelectedContext';
 import useWindowWidth from '../../hooks/useWindowWidth';
 import { IMapItem } from '../../lib/interfaces';
+import { useMap } from 'react-leaflet';
 
 const Sidebar = () => {
   const { isOpened, closeSidebar } = useSidebar();
+  const { isMobile } = useWindowWidth();
+  const map = useMap();
+
+  useEffect(() => {
+    if (isMobile) {
+      if (isOpened) {
+        map.dragging.disable();
+      } else {
+        map.dragging.enable();
+      }
+    }
+  }, [isOpened, isMobile]);
+
   return (
     <div
       className={twMerge(
@@ -24,7 +38,7 @@ const Sidebar = () => {
     >
       <div className='flex items-center justify-between mb-2'>
         <h3 className='text-black text-xl text-left'>I nostri partner</h3>
-        <button className='text-black' onClick={closeSidebar}>
+        <button className='text-black bg-transparent' onClick={closeSidebar}>
           <CloseIcon />
         </button>
       </div>
@@ -40,7 +54,7 @@ const MapPostsList = () => {
   return (
     <section
       ref={sidebarListRef}
-      className='flex flex-col pb-10 gap-2 h-full overflow-y-auto'
+      className='flex flex-col pb-10 gap-2 h-full overflow-y-scroll'
     >
       {isLoading && (
         <>
