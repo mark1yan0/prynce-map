@@ -3,6 +3,7 @@ import { useMap } from 'react-leaflet';
 import config from '../../lib/config';
 import { getMarkerPos } from '../../lib/helpers';
 import { IMapItem } from '../../lib/interfaces';
+import useWindowWidth from '../../hooks/useWindowWidth';
 
 interface Context {
   selected: null | IMapItem;
@@ -21,12 +22,17 @@ export const SelectedContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const { isMobile } = useWindowWidth();
   const [selected, setSelected] = useState<null | IMapItem>(null);
   const map = useMap();
 
   const zoomOnMarker = (item: IMapItem) => {
     setSelected(item);
-    map.flyTo(getMarkerPos(item), config.flyToZoom);
+    const [lat, lon] = getMarkerPos(item);
+    const lonOffset = 0.05;
+
+    const computedLon = isMobile ? lon : lon + lonOffset;
+    map.flyTo([lat, computedLon], config.flyToZoom);
   };
 
   return (

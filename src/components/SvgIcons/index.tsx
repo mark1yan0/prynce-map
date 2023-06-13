@@ -54,3 +54,41 @@ export const Circular = ({ className }: { className: string }) => {
     </svg>
   );
 };
+
+export const HamburderIcon = () => (
+  <svg
+    width='16'
+    height='16'
+    viewBox='0 0 16 16'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <rect y='2' width='16' height='2' rx='1' fill='#202020' />
+    <rect y='7' width='16' height='2' rx='1' fill='#202020' />
+    <rect y='12' width='16' height='2' rx='1' fill='#202020' />
+  </svg>
+);
+
+export const CloseIcon = () => (
+  <svg
+    width='16'
+    height='16'
+    viewBox='0 0 16 16'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <g clipPath='url(#clip0_805_269)'>
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='M0.295848 13.8366C-0.0947098 14.227 -0.0947096 14.8602 0.295848 15.2506L0.75096 15.7057C1.14152 16.0962 1.77474 16.0962 2.16529 15.7057L8.00124 9.87074L13.8372 15.7057C14.2277 16.0962 14.861 16.0962 15.2515 15.7057L15.7066 15.2507C16.0972 14.8602 16.0972 14.2271 15.7066 13.8366L9.87068 8.00161L15.7065 2.16676C16.0971 1.77626 16.0971 1.14315 15.7065 0.752663L15.2514 0.297629C14.8609 -0.0928621 14.2276 -0.0928619 13.8371 0.297629L8.00124 6.13248L2.1654 0.297641C1.77484 -0.0928495 1.14162 -0.0928493 0.751061 0.297642L0.295949 0.752676C-0.0946083 1.14317 -0.0946081 1.77628 0.29595 2.16677L6.13179 8.00161L0.295848 13.8366Z'
+        fill='#202020'
+      />
+    </g>
+    <defs>
+      <clipPath id='clip0_805_269'>
+        <rect width='16' height='16' fill='white' />
+      </clipPath>
+    </defs>
+  </svg>
+);

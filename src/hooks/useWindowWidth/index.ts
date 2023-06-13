@@ -12,7 +12,7 @@ function getWindowWidth() {
 
 const useWindowWidth = (): IBreakpoints => {
   const [width, setWidth] = useState(getWindowWidth());
-  const [isMobile, setIsMobile] = useState(width < 400);
+  const [isMobile, setIsMobile] = useState(width < 600);
   const [isTablet, setIsTablet] = useState(width < 780);
 
   useLayoutEffect(() => {

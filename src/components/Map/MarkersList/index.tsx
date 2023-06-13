@@ -1,22 +1,23 @@
 import { Marker } from 'react-leaflet';
 import useSelectedContext from '../../../Contexts/SelectedContext';
 import { getMarkerPos } from '../../../lib/helpers';
-import { IReducerState } from '../../../lib/interfaces';
+import useMapPosts from '../../../hooks/useMapPosts';
 
-const MarkersList = ({ state }: { state: IReducerState }) => {
+const MarkersList = () => {
+  const { isLoading, isError, data } = useMapPosts();
   const { zoomOnMarker } = useSelectedContext();
 
-  if (state.isLoading) {
+  if (isLoading) {
     return null;
   }
 
-  if (state.hasErrors) {
+  if (isError) {
     return null;
   }
 
   return (
     <>
-      {state.data.map(item => (
+      {data?.map(item => (
         <Marker
           position={getMarkerPos(item)}
           key={item.slug}

@@ -8,13 +8,8 @@ export interface IMapItem {
   slug: string;
 }
 
-export interface IReducerState {
-  data: IMapItem[] | [];
+export interface IMapPostsState {
+  data: IMapItem[];
   isLoading: boolean;
-  hasErrors: boolean;
-}
-
-export interface IReducer {
-  type: 'FETCH_INIT' | 'FETCH_SUCCESS' | 'FETCH_FAILED';
-  payload?: IMapItem[];
+  isError: boolean;
 }

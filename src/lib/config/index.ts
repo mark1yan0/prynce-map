@@ -21,4 +21,5 @@ export default {
     baseUrl: `${noLocalHostOrigin}/wp-json/wp`,
     dataPath: '/v2/prynce-map-entry',
   },
+  topZindex: 1000,
 };

@@ -1,7 +1,7 @@
-import { LatLngExpression } from 'leaflet';
+import { LatLngTuple } from 'leaflet';
 import { IMapItem } from '../interfaces';
 
-export function getMarkerPos(item: IMapItem): LatLngExpression {
+export function getMarkerPos(item: IMapItem): LatLngTuple {
   return [item.lat, item.lon];
 }
 
