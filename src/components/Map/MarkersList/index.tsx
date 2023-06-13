@@ -5,7 +5,7 @@ import useMapPosts from '../../../hooks/useMapPosts';
 
 const MarkersList = () => {
   const { isLoading, isError, data } = useMapPosts();
-  const { zoomOnMarker } = useSelectedContext();
+  const { handleSelectedPost } = useSelectedContext();
 
   if (isLoading) {
     return null;
@@ -22,7 +22,7 @@ const MarkersList = () => {
           position={getMarkerPos(item)}
           key={item.slug}
           eventHandlers={{
-            click: () => zoomOnMarker(item),
+            click: () => handleSelectedPost(item, true),
           }}
         />
       ))}

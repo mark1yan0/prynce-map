@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import useSidebar from '../../Contexts/SidebarContext';
 import { twMerge } from 'tailwind-merge';
 import config from '../../lib/config';
@@ -36,8 +36,12 @@ export default Sidebar;
 
 const MapPostsList = () => {
   const { isLoading, isError, data } = useMapPosts();
+  const { sidebarListRef } = useSelectedContext();
   return (
-    <section className='flex flex-col pb-10 gap-2 h-full overflow-y-auto'>
+    <section
+      ref={sidebarListRef}
+      className='flex flex-col pb-10 gap-2 h-full overflow-y-auto'
+    >
       {isLoading && (
         <>
           <SkeletonLoader />
@@ -56,20 +60,23 @@ const MapPostsList = () => {
 };
 
 const MapPost = ({ item }: { item: IMapItem }) => {
-  const { selected, zoomOnMarker } = useSelectedContext();
+  const { selected, handleSelectedPost } = useSelectedContext();
   const { isMobile } = useWindowWidth();
   const { closeSidebar } = useSidebar();
-  const isSelected = selected?.name === item.name;
+  const isSelected = useMemo(
+    () => selected?.name === item.name,
+    [selected?.slug]
+  );
 
   return (
     <article
-      className={`h-full w-full p-2 ${
-        isSelected ? 'bg-black' : 'bg-white'
-      } rounded-md border border-stone-200 shadow-sm text-left cursor-pointer transition-all hover:${
-        isSelected ? 'bg-gray-900' : 'bg-gray-100'
-      }`}
+      className={twMerge(
+        'h-full w-full p-2 rounded-md border border-stone-200 shadow-sm text-left cursor-pointer transition-all',
+        isSelected ? 'bg-black hover:bg-gray-900' : 'bg-white hover:bg-gray-100'
+      )}
+      data-slug={item.slug}
       onClick={() => {
-        zoomOnMarker(item);
+        handleSelectedPost(item);
         if (isMobile) {
           closeSidebar();
         }

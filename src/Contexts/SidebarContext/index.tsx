@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import useWindowWidth from '../../hooks/useWindowWidth';
 
 interface ISidebarContext {
   isOpened: boolean;
@@ -17,7 +18,8 @@ export const SidebarContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { isTablet } = useWindowWidth();
+  const [sidebarOpen, setSidebarOpen] = useState(!isTablet ? true : false);
   const openSidebar = () => setSidebarOpen(true);
   const closeSidebar = () => setSidebarOpen(false);
 
